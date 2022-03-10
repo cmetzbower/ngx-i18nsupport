@@ -1,5 +1,6 @@
 import {IICUMessage, IICUMessageCategory, IICUMessageTranslation, INormalizedMessage} from '../api/index';
-import {format, isNullOrUndefined, isString} from 'util';
+import {format} from 'util';
+import {isNullOrUndefined, isString} from 'is-what';
 import {IMessageParser} from './i-message-parser';
 
 class MessageCategory implements IICUMessageCategory {
@@ -105,7 +106,7 @@ export class ICUMessage implements IICUMessage {
                 } else {
                     this.checkValidPluralCategory(categoryName);
                     // TODO embedded ICU Message
-                    let translatedMessage = this._parser.parseNormalizedString(<string> translation[categoryName], null);
+                    const translatedMessage = this._parser.parseNormalizedString(<string> translation[categoryName], null);
                     message.addCategory(categoryName, translatedMessage);
                 }
             }

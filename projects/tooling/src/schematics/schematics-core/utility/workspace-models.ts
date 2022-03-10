@@ -6,7 +6,6 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { experimental } from '@angular-devkit/core';
 
 export enum ProjectType {
     Application = 'application',
@@ -125,14 +124,13 @@ export type ServeBuilderTarget = BuilderTarget<Builders.DevServer, ServeBuilderO
 export type ExtractI18nBuilderTarget = BuilderTarget<Builders.ExtractI18n, ExtractI18nOptions>;
 export type E2EBuilderTarget = BuilderTarget<Builders.Protractor, E2EOptions>;
 
-export interface WorkspaceSchema extends experimental.workspace.WorkspaceSchema {
+export interface WorkspaceSchema {
     projects: {
         [key: string]: WorkspaceProject<ProjectType.Application | ProjectType.Library>;
     };
 }
 
-export interface WorkspaceProject<TProjectType extends ProjectType = ProjectType.Application>
-    extends experimental.workspace.WorkspaceProject {
+export interface WorkspaceProject<TProjectType extends ProjectType = ProjectType.Application> {
     /**
     * Project type.
     */

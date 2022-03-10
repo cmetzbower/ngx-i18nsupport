@@ -149,7 +149,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/tooling/tsconfig.lib.json",
             "project": "projects/tooling/ng-package.json"
@@ -184,7 +184,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-i18nsupport-lib/tsconfig.lib.json",
             "project": "projects/ngx-i18nsupport-lib/ng-package.json"
@@ -219,7 +219,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/xliffmerge/tsconfig.lib.json",
             "project": "projects/xliffmerge/ng-package.json"

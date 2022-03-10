@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { JsonParseMode, parseJson } from '@angular-devkit/core';
+import { parse } from 'jsonc-parser';
 import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
 import { ProjectType, WorkspaceProject, WorkspaceSchema } from './workspace-models';
 
@@ -493,7 +493,7 @@ export function getWorkspace(host: Tree): WorkspaceSchema {
   }
   const content = configBuffer.toString();
 
-  return parseJson(content, JsonParseMode.Loose) as {} as WorkspaceSchema;
+  return parse(content) as {} as WorkspaceSchema;
 }
 
 export function addProjectToWorkspace<TProjectType extends ProjectType = ProjectType.Application>(
@@ -509,11 +509,6 @@ export function addProjectToWorkspace<TProjectType extends ProjectType = Project
 
     // Add project to workspace.
     workspace.projects[name] = project;
-
-    if (!workspace.defaultProject && Object.keys(workspace.projects).length === 1) {
-      // Make the new project the default one.
-      workspace.defaultProject = name;
-    }
 
     return updateWorkspace(workspace);
   };
@@ -533,7 +528,7 @@ export function getConfig(host: Tree): CliConfig {
     throw new SchematicsException('Could not find .angular-cli.json');
   }
 
-  const config = parseJson(configBuffer.toString(), JsonParseMode.Loose) as {} as CliConfig;
+  const config = parse(configBuffer.toString()) as {} as CliConfig;
 
   return config;
 }

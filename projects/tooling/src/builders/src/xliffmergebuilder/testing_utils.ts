@@ -1,4 +1,5 @@
-import {experimental, getSystemPath, join, normalize, Path, schema} from '@angular-devkit/core';
+import {getSystemPath, join, normalize, Path, schema, workspaces} from '@angular-devkit/core';
+import {NodeJsSyncHost} from '@angular-devkit/core/node';
 import {TestingArchitectHost, TestProjectHost} from '@angular-devkit/architect/testing';
 import {WorkspaceNodeModulesArchitectHost} from '@angular-devkit/architect/node';
 import {Architect} from '@angular-devkit/architect';
@@ -18,14 +19,10 @@ export const outputPath: Path = normalize('dist');
 export async function createArchitect(wsRoot: Path) {
   const registry = new schema.CoreSchemaRegistry();
   registry.addPostTransform(schema.transforms.addUndefinedDefaults);
-  const workspaceSysPath = getSystemPath(wsRoot);
 
-  const workspace = await experimental.workspace.Workspace.fromPath(host, host.root(), registry);
-  const architectHost = new TestingArchitectHost(
-    workspaceSysPath,
-    workspaceSysPath,
-    new WorkspaceNodeModulesArchitectHost(workspace, workspaceSysPath),
-  );
+
+  const workspace = await host;
+  const architectHost = new TestingArchitectHost();
   const architect = new Architect(architectHost, registry);
 
   return {

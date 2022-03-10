@@ -8,7 +8,7 @@ import {AbstractTransUnit} from './abstract-trans-unit';
 import {XliffMessageParser} from './xliff-message-parser';
 import {ParsedMessage} from './parsed-message';
 import {AbstractMessageParser} from './abstract-message-parser';
-import {isNullOrUndefined} from 'util';
+import {isNullOrUndefined} from 'is-what';
 /**
  * Created by martin on 01.05.2017.
  * A Translation Unit in an XLIFF 1.2 file.

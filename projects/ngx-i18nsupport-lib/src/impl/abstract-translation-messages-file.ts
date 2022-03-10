@@ -1,8 +1,7 @@
 import {STATE_NEW, STATE_TRANSLATED} from '../api/constants';
 import {ITranslationMessagesFile} from '../api/i-translation-messages-file';
-import {INormalizedMessage} from '../api/i-normalized-message';
 import {ITransUnit} from '../api/i-trans-unit';
-import {isNullOrUndefined} from 'util';
+import {isNullOrUndefined} from 'is-what';
 import {DOMParser} from 'xmldom';
 import {XmlSerializer, XmlSerializerOptions} from './xml-serializer';
 /**
@@ -278,7 +277,7 @@ export abstract class AbstractTranslationMessagesFile implements ITranslationMes
     /**
      * The encoding if the xml content (UTF-8, ISO-8859-1, ...)
      */
-    public encoding(): string {
+    public encoding(): BufferEncoding {
         return this._encoding;
     }
 
